@@ -1,0 +1,35 @@
+h1, h2 {
+  text-align: center;
+}
+
+h1 {
+  text-decoration: underline;
+}
+
+div {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid black;
+  padding: 25px;
+}
+
+table {
+  margin-left:auto;
+  margin-right:auto;
+  text-align: center;
+
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: black;
+  color: white;
+}
+
+td, th {
+  border: 1px solid black;
+  padding: 8px;
+}

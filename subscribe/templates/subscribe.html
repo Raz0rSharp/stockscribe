@@ -1,0 +1,47 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+<div>
+<h1>StockScribe</h1>
+<h2>Add Subscription</h2>
+<form action="/addSubscription/" method = "post">{% csrf_token %}
+    Enter ticker symbol:
+    <input type="text" name="ticker">
+    Enter email:
+    <input type="email" name="email">
+    <input type="submit" value="Add Subscription">
+</form>
+
+<h2>List of Subscriptions</h2>
+<table>
+  <tr>
+    <th>Ticker</th>
+    <th>Price</th>
+    <th>Email</th>
+    <th>Action</th>
+  </tr>
+  {% for s in subscriptions %}
+  <tr>
+  <td>{{s.ticker}}</td>
+  <td>
+    {% for p in prices %}
+      {% if p.id == s.id %}
+        ${{p.price}}
+      {% endif %}
+    {% endfor %}
+  </td>
+  <td>{{s.email}}</td>
+  <td>
+    <form action="/sendNow/{{s.id}}/" method = "post">{% csrf_token %}
+            <input type="submit" value="Send Now">
+    </form>
+    <form action="/deleteSubscription/{{s.id}}/" method = "post">{% csrf_token %}
+          <input type="submit" value="Delete">
+        </form>
+
+  </td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
